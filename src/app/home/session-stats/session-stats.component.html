@@ -1,0 +1,262 @@
+<div class="container-stats">
+  <div class="header-card">
+    <table style="width: 94%; margin-left: 3%">
+      <tr>
+        <td style="width: 30%">
+          <div style="display: grid">
+            <a [routerLink]="['/sessions']" style="display: block; font-size: 12px">Session Listing Page ></a>
+            <span style="font-size: 16px; font-weight: 450; color: #696466">Interaction Insights</span>
+          </div>
+        </td>
+        <td style="width: 40%; text-align: center">
+          <div>
+            <span
+              class="d-block"
+              style="font-size: 16px; line-height: 22px; color: #42428b; font-weight: 600; padding-bottom: 6px"
+              >{{ currentSession.topic }}</span
+            >
+            <span style="font-size: 12px; line-height: 22px; color: #696466"
+              ><i class="material-icons" style="font-size: 15px; vertical-align: sub">schedule</i>
+              {{ currentSession.duration }}</span
+            >
+            <span style="font-size: 12px; line-height: 22px; padding-left: 15px; color: #696466"
+              ><i class="material-icons" style="font-size: 15px; vertical-align: sub">event</i>
+              {{ currentSession.heldOn | date: 'fullDate' }}</span
+            >
+          </div>
+        </td>
+        <td style="width: 30%">
+          <div style="display: grid; float: right">
+            <div style="float: left; display: flex">
+              <i
+                class="material-icons"
+                style="vertical-align: bottom; font-size: 25px; padding-top: 3px; color: #696466; margin-right: 5px"
+                >person
+              </i>
+              <div style="display: flex; margin-top: 7px">
+                <span
+                  style="
+                    font-size: 10px;
+                    line-height: 18px;
+                    display: block;
+                    color: #696466;
+                    font-weight: 400;
+                    padding-right: 8px;
+                  "
+                  >Conducted By</span
+                >
+                <span
+                  style="
+                    font-size: 14px;
+                    line-height: 18px;
+                    color: #42428b;
+                    /* margin-top: -4px; */
+                    font-weight: 600;
+                    /* padding-right: 19px;*/
+                  "
+                >
+                  {{ currentSession.hub }}</span
+                >
+              </div>
+            </div>
+            <div style="display: flex; padding-left: 3px">
+              <i class="material-icons" style="vertical-align: bottom; margin-right: 4px; color: #696466">groups </i>
+              <span style="font-size: 12px; line-height: 18px; color: #696466; font-weight: 400; margin-top: 4px"
+                >{{ currentSession.noOfParticipants }} Members Participated</span
+              >
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="animated fadeIn inner-container-stats">
+    <div class="dashboard font-weight-500 stats" *ngIf="sessionStatsDetails">
+      <div class="row mb-4 card-shadow">
+        <div class="col-lg-12 font-size-12 py-3">
+          Overall Quality Index
+          <span class="d-inline-block font-lg font-weight-bolder mauve-bg ml-2 mr-1 px-1 text-white border-radius-4"
+            >08</span
+          ><span class="font-lg">/10</span>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 px-3 pb-4">
+          <div class="card text-center card-layer-1 light-purple-bg">
+            <div class="card-body">
+              <div>
+                <span class="align-middle font-lg mr-1">Total Participants </span>
+                <span class="font-4xl align-middle"> {{ sessionStatsDetails.noOfParticipants }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 px-3 pb-4">
+          <div class="card text-center card-layer-1 light-purple-bg">
+            <div class="card-body">
+              <div class="d-flex">
+                <div class="text-left">
+                  <div class="font-lg">Active Participants</div>
+                  <div class="font-weight-normal font-size-12">Participants who spoke more than 5 times</div>
+                </div>
+                <span class="font-4xl mt-1">{{ sessionStatsDetails.activeParticipantsPer | number: '2.0-0' }}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 px-3 pb-4">
+          <div class="card text-center card-layer-1 light-purple-bg">
+            <div class="card-body">
+              <div class="d-flex">
+                <div class="text-left">
+                  <div class="font-lg">Partial Participation</div>
+                  <div class="font-weight-normal font-size-12">Participants who spoke 2 to 4 times</div>
+                </div>
+                <span class="font-4xl mt-1"> {{ sessionStatsDetails.partialParticipantsPer | number: '2.0-0' }}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 px-3 pb-4">
+          <div class="card text-center card-layer-1 light-purple-bg">
+            <div class="card-body">
+              <div>
+                <span class="align-middle font-lg mr-1">No Participation </span>
+                <span class="align-middle font-4xl">
+                  {{ sessionStatsDetails.noParticipantsPer | number: '2.0-0' }}%</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="card-shadow col mx-3">
+          <div class="card text-center card-layer-2">
+            <div class="card-body">
+              <div class="text-left platform-grey mb-2">Collaboration</div>
+              <div class="row pt-0">
+                <div class="col-sm-12 col-md-6">
+                  <div class="d-inline-block">
+                    <circle-progress
+                      [percent]="sessionStatsDetails.spokeToHubCollaborationPer"
+                      [radius]="90"
+                      [outerStrokeWidth]="10"
+                      [innerStrokeWidth]="10"
+                      [space]="-10"
+                      [outerStrokeColor]="'#42428B'"
+                      [innerStrokeColor]="'#E0DBDD'"
+                      [titleFontSize]="28"
+                      [unitsFontSize]="28"
+                      [titleFontWeight]="500"
+                      [unitsFontWeight]="500"
+                      [titleColor]="'#42428B'"
+                      [unitsColor]="'#42428B'"
+                      [showSubtitle]="false"
+                      [animation]="true"
+                      [animationDuration]="300"
+                    ></circle-progress>
+                    <span class="d-block platform-grey mt-2">HUB to SPOKE</span>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div class="d-inline-block">
+                    <circle-progress
+                      [percent]="sessionStatsDetails.spokeToSpokeCollaborationPer"
+                      [radius]="90"
+                      [outerStrokeWidth]="10"
+                      [innerStrokeWidth]="10"
+                      [space]="-10"
+                      [outerStrokeColor]="'#925EB0'"
+                      [innerStrokeColor]="'#E0DBDD'"
+                      [titleFontSize]="28"
+                      [unitsFontSize]="28"
+                      [titleFontWeight]="500"
+                      [unitsFontWeight]="500"
+                      [titleColor]="'#925EB0'"
+                      [unitsColor]="'#925EB0'"
+                      [showSubtitle]="false"
+                      [animation]="true"
+                      [animationDuration]="300"
+                      [clockwise]="false"
+                    ></circle-progress>
+                    <span class="d-block platform-grey mt-2">SPOKE to SPOKE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-shadow col mx-3">
+          <div class="card text-center card-layer-2">
+            <div class="card-body pb-0">
+              <div class="text-left mb-5 platform-grey">Diversity & Inclusiveness</div>
+              <div class="row px-5">
+                <div class="col-md-4">
+                  <img src="./assets/icons/boy.svg" class="diversity-icon" />
+                  <span class="d-block font-2xl font-weight-500 dusky-blue">67%</span>
+                </div>
+                <div class="col-md-4 pt-1">
+                  <img src="./assets/icons/girl.svg" class="diversity-icon" />
+                  <span class="d-block font-2xl font-weight-500 mauve">33%</span>
+                </div>
+                <div class="col-md-4">
+                  <!-- <div class="d-flex flex-column my-2">
+                    <div class="my-1">
+                      <img class="float-left" src="./assets/icons/building1.svg" class="d-block float-left mr-3"/>
+                      <span class="d-inline-block mb-4 dusky-blue mt-2">
+                        <span class="d-block dusky-blue mt-1 text-left">55% From</span>
+                        <span class="font-weight-bolder">Bangalore City</span>
+                      </span>
+                    </div>
+                    <div class="my-1">
+                      <img class="float-left" src="./assets/icons/building2.svg" class="float-left mr-2"/>
+                      <span class="d-inline-block mauve mt-2 text-left">
+                        <span class="d-block font-weight-bolder">45% From</span>
+                        <span class="font-weight-bolder">Other Cities</span>
+                      </span>
+                    </div>
+                  </div> -->
+                  <div class="d-flex my-2 py-2 text-left">
+                    <div class="my-1">
+                      <img src="./assets/icons/building1.svg" class="mr-3 my-2" />
+                      <img src="./assets/icons/building2.svg" class="mr-2 my-2" />
+                    </div>
+                    <div class="my-1 py-3">
+                      <span class="d-inline-block dusky-blue py-1 mb-1"> 55% From<br />Bangalore City </span>
+                      <span class="d-inline-block mauve pt-3"> 45% From<br />Other Cities </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4 pt-0">
+        <div class="col-sm-12 col-md-8 pl-2 pt-2 mb-4 card-shadow mx-3">
+          <div class="card text-center card-layer-3">
+            <div class="card-body">
+              <div class="text-left platform-grey">Time Spent Analysis</div>
+              <div class="row">
+                <div class="col-md-12 chart-window">
+                  <div id="chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-shadow col mb-4 mx-3 pl-2 pr-0 pt-2">
+          <div class="card card-layer-3">
+            <div class="card-body">
+              <div class="text-left platform-grey mb-3">Word Cloud</div>
+              <div class="row mx-0 px-0">
+                <div class="col-md-12 font-lg text-left px-0">
+                  <div class="custom-lh" id="wordCloudData" ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

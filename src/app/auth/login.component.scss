@@ -1,0 +1,25 @@
+.app-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.lag-block {
+  float: right;
+  padding-right: 4px;
+  padding-top: 4px;
+}
+
+.app-version-block {
+  float: right;
+  padding-right: 4px;
+}
+
+.login-logo {
+  height: 38px;
+  margin-bottom: 17px;
+}
+
+.login-card {
+  width: 44%;
+}

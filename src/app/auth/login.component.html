@@ -1,0 +1,95 @@
+<div class="app-body">
+  <div>
+    <div class="d-inline-block ml-3 lag-block">
+      <app-language-selector></app-language-selector>
+    </div>
+  </div>
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div *ngFor="let alert of alertsDismiss">
+        <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+      </div>
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+                  <h1 translate>Login</h1>
+                  <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
+                    Email or password incorrect.
+                  </div>
+                  <p class="text-muted" translate>Sign In to your account</p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="email"
+                      autocomplete="email"
+                      [placeholder]="'Email' | translate"
+                    />
+                    <span hidden translate>Email</span>
+                    <small
+                      [hidden]="loginForm.controls.email.valid || loginForm.controls.email.untouched"
+                      class="text-danger"
+                      translate
+                    >
+                      Email is required
+                    </small>
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input
+                      type="password"
+                      class="form-control"
+                      formControlName="password"
+                      autocomplete="current-password"
+                      [placeholder]="'Password' | translate"
+                      required
+                    />
+                    <span hidden translate>Password</span>
+                    <small
+                      [hidden]="loginForm.controls.password.valid || loginForm.controls.password.untouched"
+                      class="text-danger"
+                      translate
+                    >
+                      Password is required
+                    </small>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-primary px-4" [disabled]="loginForm.invalid || isLoading">
+                        <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i> <span translate>Login</span>
+                      </button>
+                    </div>
+                    <div class="col-6 text-right">
+                      <button type="button" class="btn btn-link px-0" translate>Forgot password?</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="login-card card text-white bg-primary py-5 d-md-down-none">
+              <div class="card-body text-center">
+                <div>
+                  <img class="login-logo" src="assets/img/brand/societalplatform-logo.svg" alt="Logo" />
+                  <h5 translate>Interaction Analyser</h5>
+                  <p translate>Unlock insights hidden within your teams interactions.</p>
+                  <button type="button" class="btn btn-primary active hide mt-3" translate>Read More!</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div>
+    <h6 class="d-inline-block app-version-block">v{{ version }}</h6>
+  </div>
+</div>

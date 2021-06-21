@@ -1,0 +1,43 @@
+.sessions-container {
+  .fa-th-large {
+    color: #ffffff;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #c6bcb8;
+  }
+  .fa-th-large.selected {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #925eb0;
+  }
+
+  .fa-list-ul.selected {
+    color: #925eb0;
+  }
+  #session-card-view,
+  #session-list-view {
+    .session-cards-bg {
+      background: #fdfdfd;
+      box-shadow: 1px 1px 4px 1px #c4c4c4;
+      border-radius: 5px;
+      min-height: 210px;
+      .card-body {
+        background: rgba(198, 188, 184, 0.1);
+        border-radius: 5px 5px 0px 0px;
+      }
+    }
+    .material-people-whitespace {
+      margin-left: -8px;
+    }
+    .fa-share-alt {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(90deg);
+    }
+  }
+  .session-cards-list-bg {
+    background: #ffffff;
+    box-shadow: 0px 0px 4px rgba(198, 188, 184, 0.72);
+    border-radius: 5px;
+  }
+}

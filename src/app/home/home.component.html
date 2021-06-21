@@ -1,0 +1,120 @@
+<div class="sessions-container animated fadeIn">
+  <div class="mb-5 font-weight-500">
+    <span class="font-size-18 font-weight-500">
+      Sessions
+      <!-- <img class="grid-view-icon cursor-pointer ml-4"  [ngClass]="{'selected': isGridView}" (click)="isGridView = !isGridView" src="../../assets/icons/grid-view-icon.svg"/> -->
+      <i
+        id="session-card-icon"
+        class="fa fa-th-large fa-lg cursor-pointer ml-4"
+        [ngClass]="{ selected: isGridView }"
+        (click)="isGridView = !isGridView"
+      ></i>
+      <i
+        id="session-list-icon"
+        class="fa fa-list-ul fa-lg cursor-pointer ml-2 taupe"
+        [ngClass]="{ selected: !isGridView }"
+        (click)="isGridView = !isGridView"
+      ></i>
+    </span>
+  </div>
+  <div class="row font-weight-500" id="session-card-view" *ngIf="isGridView">
+    <ng-container *ngFor="let session of sessionList; let i = index">
+      <div class="col-sm-6 col-md-3 click">
+        <div class="card session-cards-bg">
+          <div class="card-body pb-1">
+            <div>
+              <div class="multiline-ellipse font-lg mb-2 dusky-blue" title="{{ session.topic }}">
+                {{ session.topic }}
+              </div>
+              <span class="d-inline-block font-size-10 mr-2 platform-grey">
+                <i class="material-icons font-lg align-bottom">schedule</i>
+                {{ session.duration }}
+              </span>
+              <span class="font-size-10 platform-grey">
+                <i class="material-icons font-lg align-bottom">event</i>
+                {{ session.heldOn | date: 'dd-MMM-yyyy hh:mm' }}
+              </span>
+            </div>
+          </div>
+          <div class="card-footer very-light-grey-bg">
+            <div class="d-flex">
+              <div>
+                <i class="font-6xl material-icons material-people-whitespace platform-grey mr-1">person</i>
+                <i class="material-icons ml-1 platform-grey d-block">groups</i>
+              </div>
+              <div class="mt-2">
+                <span class="d-block font-size-10 platform-grey">Conducted By</span>
+                <span class="dusky-blue d-block">{{ session.hub }}</span>
+                <span class="d-block font-xs mt-2 pt-1 platform-grey"
+                  >{{ session.noOfParticipants }} Members Participated</span
+                >
+              </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <div class="cursor-pointer" (click)="viewSessionDetails(i)">
+                <i class="fa fa-share-alt font-size-18 mr-2 mt-1 dusky-blue" aria-hidden="true"></i>
+                <span class="align-text-top font-xs dusky-blue"><u>Analysis</u></span>
+              </div>
+              <div class="cursor-pointer" (click)="viewSessionStats(i)">
+                <img class="font-xs mr-1 dusky-blue" src="./assets/icons/dashboard.svg" />
+                <span class="dusky-blue font-xs dusky-blue"><u>Dashboard</u></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="row font-weight-500" id="session-list-view" *ngIf="!isGridView">
+    <ng-container *ngFor="let session of sessionList; let i = index">
+      <div class="col-sm-6 col-md-12" (click)="viewSessionDetails(i)">
+        <div class="card session-cards-list-bg">
+          <div class="card-body py-3">
+            <div class="row">
+              <div class="col-md-7 col-sm-6">
+                <div class="d-inline-block font-lg dusky-blue text-truncate w-100" title="{{ session.topic }}">
+                  {{ session.topic }}
+                </div>
+              </div>
+              <div class="col-md-5 col-sm-6">
+                <div class="d-flex">
+                  <div>
+                    <i class="font-3xl material-icons material-people-whitespace mr-2 platform-grey ml-0">person</i>
+                  </div>
+                  <div>
+                    <span class="d-block font-size-10 platform-grey">Conducted By</span>
+                    <span class="dusky-blue mr-3">{{ session.hub }}</span>
+                    <i class="material-icons platform-grey align-bottom">groups</i>
+                    <span class="d-inline-block font-xs platform-grey"
+                      >{{ session.noOfParticipants }} Members Participated</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-7 col-sm-6">
+                <span class="d-inline-block font-size-10 mr-2 platform-grey">
+                  <i class="material-icons font-lg align-bottom">schedule</i>
+                  {{ session.duration }}
+                </span>
+                <span class="font-size-10 platform-grey">
+                  <i class="material-icons font-lg align-bottom">event</i>
+                  {{ session.heldOn | date: 'dd-MMM-yyyy hh:mm' }}
+                </span>
+              </div>
+              <div class="col-md-5 col-sm-6">
+                <div class="d-inline-block cursor-pointer mr-4" (click)="viewSessionDetails(i)">
+                  <i class="fa fa-share-alt font-size-18 mr-1 mt-1 ml-2 dusky-blue" aria-hidden="true"></i>
+                  <span class="align-text-top font-xs dusky-blue"><u>Analysis</u></span>
+                </div>
+                <div class="d-inline-block cursor-pointer" (click)="viewSessionStats(i)">
+                  <img class="font-xs mr-1 dusky-blue" src="./assets/icons/dashboard.svg" />
+                  <span class="dusky-blue font-xs dusky-blue"><u>Dashboard</u></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

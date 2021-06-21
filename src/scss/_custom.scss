@@ -1,0 +1,60 @@
+// Here you can add other styles
+
+// project colors
+
+.dusky-blue {
+  color: #42428b;
+}
+
+.mauve {
+  color: #925eb0;
+}
+
+.mauve-bg {
+  background: #925eb0;
+}
+
+.platform-grey {
+  color: #696466;
+}
+
+.very-light-grey-bg {
+  background: #fdfdfd;
+}
+
+.taupe {
+  color: #c6bcb8;
+}
+
+// project text
+
+.font-weight-500 {
+  font-weight: 500 !important;
+}
+.font-size-10 {
+  font-size: 10px;
+}
+.font-size-14 {
+  font-size: 14px;
+}
+.font-size-18 {
+  font-size: 18px;
+}
+
+.font-6xl {
+  font-size: 3rem !important;
+}
+
+.multiline-ellipse {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  height: 3rem;
+}
+
+// project defaults
+
+.cursor-pointer {
+  cursor: pointer;
+}

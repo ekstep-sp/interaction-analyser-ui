@@ -1,0 +1,108 @@
+<div class="animated fadeIn">
+  <div class="header-card">
+    <table style="width: 94%; margin-left: 3%">
+      <tr>
+        <td style="width: 30%">
+          <div style="display: grid">
+            <a [routerLink]="['/sessions']" style="display: block; font-size: 12px">Session Listing Page ></a>
+            <span style="font-size: 16px; font-weight: 450; color: #696466">Network Interaction Analysis</span>
+          </div>
+        </td>
+        <td style="width: 40%; text-align: center">
+          <div>
+            <span
+              class="d-block"
+              style="font-size: 16px; line-height: 22px; color: #42428b; font-weight: 600; padding-bottom: 6px"
+              >{{ currentSession.topic }}</span
+            >
+            <span style="font-size: 12px; line-height: 22px; color: #696466"
+              ><i class="material-icons" style="font-size: 15px; vertical-align: sub">schedule</i>
+              {{ currentSession.duration }}</span
+            >
+            <span style="font-size: 12px; line-height: 22px; padding-left: 15px; color: #696466"
+              ><i class="material-icons" style="font-size: 15px; vertical-align: sub">event</i>
+              {{ currentSession.heldOn | date: 'fullDate' }}</span
+            >
+          </div>
+        </td>
+        <td style="width: 30%">
+          <div style="display: grid; float: right">
+            <div style="float: left; display: flex">
+              <i
+                class="material-icons"
+                style="vertical-align: bottom; font-size: 25px; padding-top: 3px; color: #696466; margin-right: 5px"
+                >person
+              </i>
+              <div style="display: flex; margin-top: 7px">
+                <span
+                  style="
+                    font-size: 10px;
+                    line-height: 18px;
+                    display: block;
+                    color: #696466;
+                    font-weight: 400;
+                    padding-right: 8px;
+                  "
+                  >Conducted By</span
+                >
+                <span
+                  style="
+                    font-size: 14px;
+                    line-height: 18px;
+                    color: #42428b;
+                    /* margin-top: -4px; */
+                    font-weight: 600;
+                    /* padding-right: 19px;*/
+                  "
+                >
+                  {{ currentSession.hub }}</span
+                >
+              </div>
+            </div>
+            <div style="display: flex; padding-left: 3px">
+              <i class="material-icons" style="vertical-align: bottom; margin-right: 4px; color: #696466">groups </i>
+              <span style="font-size: 12px; line-height: 18px; color: #696466; font-weight: 400; margin-top: 4px"
+                >{{ currentSession.noOfParticipants }} Members Participated</span
+              >
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="row" style="float: right; padding: 10px">
+    <a
+      [routerLink]="['/session-stats']"
+      class="btn btn-lg btn-success active start"
+      style="display: block; font-size: 14px; float: right"
+      ><i class="fa fa-line-chart"></i> Interaction Insights</a
+    >
+  </div>
+  <div class="row" style="padding-bottom: 20px; padding-left: 17px; color: #696466">
+    <div id="graphContainer" class="graphContainer d-flex">
+      <div
+        id="node-details"
+        class="card box"
+        style="position: absolute; right: 0; margin-right: 10px; display: none"
+      ></div>
+      <div id="initialText" class="initialText">
+        <button id="startBtn" class="generalBtn btn btn-lg btn-success active start">Analyze</button>
+      </div>
+
+      <!--space for svg-->
+    </div>
+    <!--range slider using slider.js-->
+
+    <div class="range">
+      <input type="range" min="0" value="0" class="slider" disabled />
+      <!-- <div id="sliderticks" class="sliderticks">
+    </div> -->
+      <ul id="sliderticks" class="sliderticks"></ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix">
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
